@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\RubyMove.cs" />
     <Compile Include="Assets\Scripts\barry.cs" />
+    <Compile Include="Assets\Scripts\Danger.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\2DBeginner_Third-PartyNotice.txt" />

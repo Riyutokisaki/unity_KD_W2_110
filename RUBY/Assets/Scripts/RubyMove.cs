@@ -19,7 +19,7 @@ public class RubyMove : MonoBehaviour
     public Rigidbody2D RB;//定義鋼體(Move) 23
 
     public float speed = 3f;//64
-
+    //血量設定
     [Header("最高血量")]
     public int maxHealth = 5;
     [Header("當前血量")]
@@ -32,8 +32,8 @@ public class RubyMove : MonoBehaviour
         RB = GetComponent<Rigidbody2D>();//讀取套用腳本物件的剛體元件，會在公開欄位顯示
         //GetComponent        <>        ();
         //(讀取套用腳本的物件)<的某個元件>(變數);
-
-        maxHealth = nowHealth;
+        
+        maxHealth = nowHealth;//剛開始的血量是滿血
     }
 
     private void FixedUpdate()//固定幀數執行
@@ -68,7 +68,7 @@ public class RubyMove : MonoBehaviour
         RubyAnimation.SetFloat("x",LookDirection.x);
         RubyAnimation.SetFloat("y", LookDirection.y);
         //把RubyGo的移動量給予Speed
-        RubyAnimation.SetFloat("Speed", RubyGO.magnitude);
+        RubyAnimation.SetFloat("speed", RubyGO.magnitude);
         #endregion
 
         //移動Ruby位置
@@ -76,15 +76,17 @@ public class RubyMove : MonoBehaviour
         RB.MovePosition(RubyPosition);//使用鋼體進行移動
 
         #region 血量
+        //如果血量==0 則重啟關卡
         if(nowHealth == 0)
         {
             Application.LoadLevel("SampleScene");
+            
         }
         #endregion
     }
     public void ChangeHealth(int amout)
     {
-        nowHealth = nowHealth + amout;
+        nowHealth = nowHealth + amout; //加血機制-1
         print("Ruby血量" + nowHealth);
     }
 }
