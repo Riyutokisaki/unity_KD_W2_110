@@ -24,6 +24,9 @@ public class RubyMove : MonoBehaviour
     public int maxHealth = 5;
     [Header("當前血量")]
     public int nowHealth;
+
+    [Header("子彈")]
+    public GameObject Bullet;
     #endregion
 
     void Start()//遊戲開始時執行
@@ -86,10 +89,24 @@ public class RubyMove : MonoBehaviour
         #endregion
         //print("Ruby血量" + nowHealth);
 
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            Fried();
+        }
+
     }
-    public void ChangeHealth(int amout)
+    public void ChangeHealth(int amout)//前方為public公開給其他腳本使用
     {
         nowHealth = nowHealth + amout; //加血機制-1
         print("Ruby血量" + nowHealth);
+    }
+
+    void Fried()
+    {
+        //實例化Instantiate
+        //建立一個欄位用來實例化子彈
+        //實例化(物件'GameObject',(Ruby的)剛體.位置'Vector3',四元數.無旋轉(前面只有三位數在加一個選轉角度);
+        GameObject friendBullet = Instantiate(Bullet,RB.position, Quaternion.identity);
+
     }
 }
