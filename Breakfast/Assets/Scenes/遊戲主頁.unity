@@ -4072,7 +4072,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &115934573
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4085,19 +4085,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5451016ad68b5a4d895aeeb2ee8734d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  aisle: 2.5
   myPosition: {x: 0, y: 0, z: 0}
-  RB: {fileID: 0}
   AN: {fileID: 0}
-  walk: "\u8D70"
-  shoot: "\u5C04"
-  first: {x: -7.47, y: -1.9, z: 0}
-  second: {x: -7.47, y: 0.6, z: 0}
-  third: {x: -7.47, y: 3.1, z: 0}
   onFirst: 0
   onSecond: 0
   onThird: 0
   put: 0
+  bullets:
+  - {fileID: 1362233356550378036, guid: b6030ae22cc67ca4bacaa4a7a0be76d9, type: 3}
+  - {fileID: 2567896979226602914, guid: 7b817d2811da079408eccc5d9f766998, type: 3}
+  - {fileID: 1603101507195229562, guid: 641d16a4c200b2a4eb8accf84ff65486, type: 3}
+  CDTime: 2
+  coldTime: 0
 --- !u!70 &115934574
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -4209,7 +4208,7 @@ RectTransform:
   - {fileID: 1315558268}
   - {fileID: 1869646990}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -4884,7 +4883,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1286391086
 GameObject:
@@ -5433,7 +5432,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!156049354 &1654357668
 Grid:
   m_ObjectHideFlags: 0

@@ -5,30 +5,37 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     #region 欄位
-    [Header("位置增減"),Range(0,1000)]
-    public float aisle = 2.5f;
+    //[Header("位置增減"),Range(0,1000)]
+    private float aisle = 2.5f;
     [Header("目前位置")]
     public Vector3 myPosition;
-    [Header("剛體")]
-    public Rigidbody2D RB;
+    //[Header("剛體")]
+    private Rigidbody2D RB;
     [Header("動畫")]
     public Animator AN ;
-    public string walk = "走";
-    public string shoot = "射";
+    private string walk = "走";
+    private string shoot = "射";
     [Header("各排")]
-    public Vector3 first= new Vector3(-7.47f, -1.9f, 0);
-    public Vector3 second = new Vector3(-7.47f, 0.6f, 0);
-    public Vector3 third = new Vector3(-7.47f, 3.1f, 0);
+    private Vector3 first= new Vector3(-7.47f, -1.9f, 0);
+    private Vector3 second = new Vector3(-7.47f, 0.6f, 0);
+    private Vector3 third = new Vector3(-7.47f, 3.1f, 0);
     public bool onFirst;
     public bool onSecond;
     public bool onThird;
     public bool put =true;
+    [Header("子彈放置")]
+    public GameObject[] bullets;
+    [Header("CD時間")]
+    public float CDTime = 2f;
+    [SerializeField]
+    private float coldTime;
     #endregion
     private void Start()
     {
         RB = GetComponent<Rigidbody2D>();
         AN = GetComponent<Animator>();
         myPosition = transform.position;
+        coldTime = 0;
     }
     private void Update()
     {
@@ -38,6 +45,7 @@ public class Player : MonoBehaviour
     {
         Move();
         if (Input.GetKeyDown(KeyCode.Space)) Launch();
+        coldTime += Time.deltaTime;
     }
     #region 方法
     void Move()
@@ -93,9 +101,24 @@ public class Player : MonoBehaviour
 
     }
 
-    void Launch()
+    private void Launch()
     {
-        AN.SetTrigger(shoot);
+        print("發射");
+        if (coldTime>=CDTime) 
+        {
+            Vector2 direction = myPosition;
+            direction.Normalize();
+            AN.SetTrigger(shoot);
+            GameObject newBullets = Instantiate(bullets[Random.Range(0, 3)], RB.position, Quaternion.identity);
+
+            Bullets bull = GetComponent<Bullets>();
+            bull.Shoot(direction, 200);
+
+            coldTime = 0;
+        }
+    
+            
+        
     }
     #endregion
 }
